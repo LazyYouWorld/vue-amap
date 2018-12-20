@@ -229,12 +229,3 @@ export default {
   }
 };
 </script>
-
-<style lang="less">
-.el-vue-amap-container {
-  height: 100%;
-.el-vue-amap {
-    height: 100%;
-  }
-}
-</style>

@@ -7,8 +7,8 @@
         v-model="keyword"
         @keyup.enter="search"
         @input="autoComplete">
-         <span @click="searchClear">清空</span>
-      <span class="search-btn" @click="search" >搜索</span>
+         <i class="search-clear el-icon-error" @click="searchClear" v-show="keyword.length!==0 ? true : false"></i>
+      <span class="search-btn" @click="search">搜索</span>
     </div>
     <div class="search-tips">
       <ul>
@@ -21,74 +21,6 @@
     </div>
   </div>
 </template>
-<style lang="less">
-  .el-vue-search-box-container {
-    position: relative;
-    width: 360px;
-    height: 45px;
-    background: #fff;
-    box-shadow: 0 2px 2px rgba(0,0,0,.15);
-    border-radius: 2px 3px 3px 2px;
-    z-index: 10;
-    .search-box-wrapper {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-
-      input {
-        flex: 1;
-        height: 20px;
-        line-height: 20px;
-        letter-spacing: .5px;
-        font-size: 14px;
-        text-indent: 10px;
-        box-sizing: border-box;
-        border: none;
-        outline: none;
-      }
-
-      .search-btn {
-        width: 45px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        cursor: pointer;
-      }
-    }
-
-    .search-tips {
-      position: absolute;
-      top: 100%;
-      border: 1px solid #dbdbdb;
-      background: #FFF;
-      overflow: auto;
-
-      ul {
-        padding: 0;
-        margin: 0;
-
-        li {
-          height: 40px;
-          line-height: 40px;
-          box-shadow: 0 1px 1px rgba(0,0,0,.1);
-          padding: 0 10px;
-          cursor: pointer;
-
-          &.autocomplete-selected {
-            background: #eee;
-          }
-        }
-      }
-    }
-  }
-</style>
 <script>
 import RegisterComponentMixin from '../mixins/register-component';
 import {lazyAMapApiLoaderInstance} from '../services/injected-amap-api-instance';
@@ -171,10 +103,14 @@ export default {
     }
   },
   watch: {
-    keord() {
-      if (this.keyword === '') {
-        this.tips = [];
-      }
+    keyword() {
+      let that = this;
+      console.log(this.keyword);
+      setTimeout(()=>{
+        if (that.keyword.length === 0) {
+          that.tips = [];
+        }
+      }, 300);
     }
   }
 };
