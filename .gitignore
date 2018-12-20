@@ -5,9 +5,7 @@ node_modules
 .idea
 .npmrc
 example
-dist
 .vscode
 .tags*
 /docs
-dist
 coverage
