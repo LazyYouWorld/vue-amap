@@ -7,6 +7,7 @@
         v-model="keyword"
         @keyup.enter="search"
         @input="autoComplete">
+         <span @click="searchClear">清空</span>
       <span class="search-btn" @click="search" >搜索</span>
     </div>
     <div class="search-tips">
@@ -126,6 +127,10 @@ export default {
     }
   },
   methods: {
+    searchClear() {
+      this.keyword = [];
+      this.tips = [];
+    },
     autoComplete() {
       if (!this.keyword || !this._autoComplete) return;
       this._autoComplete.search(this.keyword, (status, result) => {
@@ -162,6 +167,13 @@ export default {
       } else if (type === 'down' && this.selectedTip + 1 < this.tips.length) {
         this.selectedTip += 1;
         this.keyword = this.tips[this.selectedTip].name;
+      }
+    }
+  },
+  watch: {
+    keord() {
+      if (this.keyword === '') {
+        this.tips = [];
       }
     }
   }
