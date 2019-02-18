@@ -10,7 +10,8 @@
         @keyup.enter="search"
         @input="autoComplete">
          <i class="search-clear el-icon-error" @click="searchClear" v-show="keyword.length!==0 ? true : false"></i>
-      <span class="search-btn" @click="classToggle?search:toggle(true)"><i class="el-icon-search el-input__icon"></i></span>
+      <span class="search-btn" v-show="classToggle===true" @click="search"><i class="el-icon-search el-input__icon"></i></span>
+      <span class="search-btn" v-show="classToggle===false" @click="toggle(true)"><i class="el-icon-search el-input__icon"></i></span>
     </div>
     <div class="search-tips">
       <ul>
