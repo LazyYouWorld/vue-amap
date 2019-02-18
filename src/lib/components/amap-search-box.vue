@@ -9,8 +9,8 @@
         v-model="keyword"
         @keyup.enter="search"
         @input="autoComplete">
-         <i class="search-clear el-icon-error" @click="classToggle?toggle(true):searchClear" v-show="keyword.length!==0 ? true : false"></i>
-      <span class="search-btn" @click="search"><i class="el-icon-search el-input__icon"></i></span>
+         <i class="search-clear el-icon-error" @click="searchClear" v-show="keyword.length!==0 ? true : false"></i>
+      <span class="search-btn" @click="classToggle?toggle(true):search"><i class="el-icon-search el-input__icon"></i></span>
     </div>
     <div class="search-tips">
       <ul>
@@ -36,7 +36,7 @@ export default {
       tips: [],
       selectedTip: -1,
       loaded: false,
-      classToggle: false
+      classToggle: true
     };
   },
   mounted() {
