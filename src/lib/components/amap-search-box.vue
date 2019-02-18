@@ -1,6 +1,6 @@
 <template>
   <div class="el-vue-search-box-container"
-      :class="classToggle?'mini':''"
+      :class="classToggle?'':'mini'"
        @keydown.up="selectTip('up')"
        @keydown.down="selectTip('down')">
     <div class="search-box-wrapper">
@@ -10,7 +10,7 @@
         @keyup.enter="search"
         @input="autoComplete">
          <i class="search-clear el-icon-error" @click="searchClear" v-show="keyword.length!==0 ? true : false"></i>
-      <span class="search-btn" @click="classToggle?toggle(true):search"><i class="el-icon-search el-input__icon"></i></span>
+      <span class="search-btn" @click="classToggle?search:toggle(true)"><i class="el-icon-search el-input__icon"></i></span>
     </div>
     <div class="search-tips">
       <ul>
@@ -36,7 +36,7 @@ export default {
       tips: [],
       selectedTip: -1,
       loaded: false,
-      classToggle: true
+      classToggle: false
     };
   },
   mounted() {
