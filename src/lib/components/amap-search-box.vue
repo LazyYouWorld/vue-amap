@@ -1,14 +1,16 @@
 <template>
   <div class="el-vue-search-box-container"
+      :class="classToggle?'mini':''"
        @keydown.up="selectTip('up')"
        @keydown.down="selectTip('down')">
     <div class="search-box-wrapper">
+      <i class="el-input__icon el-icon-arrow-right" @click="toggle(false)"></i>
       <input type="text"
         v-model="keyword"
         @keyup.enter="search"
         @input="autoComplete">
-         <i class="search-clear el-icon-error" @click="searchClear" v-show="keyword.length!==0 ? true : false"></i>
-      <span class="search-btn" @click="search">搜索</span>
+         <i class="search-clear el-icon-error" @click="classToggle?toggle(true):searchClear" v-show="keyword.length!==0 ? true : false"></i>
+      <span class="search-btn" @click="search"><i class="el-icon-search el-input__icon"></i></span>
     </div>
     <div class="search-tips">
       <ul>
@@ -33,7 +35,8 @@ export default {
       keyword: this.default || '',
       tips: [],
       selectedTip: -1,
-      loaded: false
+      loaded: false,
+      classToggle: false
     };
   },
   mounted() {
@@ -100,6 +103,11 @@ export default {
         this.selectedTip += 1;
         this.keyword = this.tips[this.selectedTip].name;
       }
+    },
+    toggle(bool) {
+      this.classToggle = bool;
+      this.keyword = '';
+      this.tips = [];
     }
   },
   watch: {
