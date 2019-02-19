@@ -6,6 +6,7 @@
     <div class="search-box-wrapper">
       <i class="el-input__icon el-icon-arrow-right" @click="toggle(false)"></i>
       <input type="text"
+        placeholder="搜索地点"
         v-model="keyword"
         @keyup.enter="search"
         @input="autoComplete">
